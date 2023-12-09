@@ -6,15 +6,16 @@ You may assume that each input would have exactly one solution, and you may not 
 You can return the answer in any order.
 */
 
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = i+1; j < nums.length; j++) {
-                if (nums[i] + nums[j] == target) {
-                    return new int[] {i, j};
-                }
+public class Solution {
+    public int[] TwoSum(int[] nums, int target) {
+        Dictionary<int, int> d = new Dictionary<int, int>();
+        for (int i = 0; i < nums.Length; i++) {
+            var k = target-nums[i];
+            if (d.TryGetValue(k, out var val)) {
+                return new int[]{i, d[k]};
             }
+            d.TryAdd(nums[i], i);
         }
-        return new int[] {};
+        return null;
     }
 }
